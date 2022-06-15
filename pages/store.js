@@ -14,10 +14,10 @@ import {
 } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "@material-ui/core/Slider";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import SmallProduct from "../components/home/SmallProduct";
 
-const Store = ({ products }) => {
+const Store = ({ products, product_m }) => {
   const dispatch = useDispatch();
   const [keyword, setKeyword] = useState("");
   // const [product, setData1] = useState(null);
@@ -66,27 +66,10 @@ const Store = ({ products }) => {
   // console.log(product);
   const rpp = products.resultPerPage;
   const pc = products.productsCount;
-  const priceHandler = (event, newPrice) => {
-    setPrice(newPrice);
-  };
-  // console.log(rpp, pc);
-
-  const muiTheme = createMuiTheme({
-    overrides: {
-      MuiSlider: {
-        thumb: {
-          color: "#d44848",
-        },
-        track: {
-          color: "#278be3",
-          height: 4,
-        },
-        rail: {
-          color: "black",
-        },
-      },
-    },
-  });
+  // const priceHandler = (event, newPrice) => {
+  //   setPrice(newPrice);
+  // };
+  // // console.log(rpp, pc);
 
   const categories = [
     "Laptop",
@@ -98,17 +81,30 @@ const Store = ({ products }) => {
     "SmartPhones",
   ];
 
-  const brands = ["Nike", "Addidas", "Asian", "Boat", "Puma", "Red-Tape"];
-  const changeCategory = () => {
-    console.log(category);
-    // Router.push(`/filter/category/${category}`);
-  };
-
   // new
 
   let count = products.filteredProductsCount;
-  const price_ = useSelector((state) => state.filter.price);
+  const [quat_1, setquat_1] = useState(0);
+  const [quat_2, setquat_2] = useState(3);
 
+  const qt_plus = () => {
+    setquat_1(quat_1 + 3);
+    setquat_2(quat_2 + 3);
+  };
+
+  const qt_minus = () => {
+    if (quat_1 <= 0) {
+      setquat_1(0);
+      setquat_2(3);
+    } else {
+      setquat_1(quat_1 - 3);
+      setquat_2(quat_2 - 3);
+    }
+  };
+  // const [price, setPrice] = useState([0, 25000]);
+  const priceHandler = (event, newPrice) => {
+    setPrice(newPrice);
+  };
   return (
     <div>
       <Head>
@@ -120,6 +116,19 @@ const Store = ({ products }) => {
       <main>
         <div className="store">
           <div className="store__filter">
+            <div className="store__filter__price">
+              <div className="store__filter__price__head">
+                <h2>Filter By Price</h2>
+              </div>
+              <Slider
+                value={price}
+                onChange={priceHandler}
+                valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
+                min={0}
+                max={25000}
+              />
+            </div>
             <div className="store__filter__categories">
               <div className="store__filter__categories__head">
                 <h2>
@@ -141,25 +150,21 @@ const Store = ({ products }) => {
                 ))}
               </div>
             </div>
-            <div className="store__filter__categories">
-              <div className="store__filter__categories__head">
-                <h2>
-                  Bra<span>nds</span>
-                </h2>
+            <div className="product__new vv">
+              <div className="product__new__head">
+                <h2>FEATURED PRODUCTS</h2>
+                <div className="product__new_">
+                  <AiOutlineArrowLeft className="icon c" onClick={qt_minus} />
+                  <AiOutlineArrowRight className="icon c" onClick={qt_plus} />
+                </div>
               </div>
-              <div className="store__filter__categories_">
-                {brands.map((brand) => (
-                  <div
-                    className="store__filter__categories__"
-                    key={brand}
-                    onClick={() => {
-                      setBrand(brand);
-                      Router.push(`/filter/brand/${brand}`);
-                    }}
-                  >
-                    <h3>{brand}</h3>
-                  </div>
-                ))}
+              <div className="product__new__ vvv">
+                {product_m &&
+                  product_m.products
+                    .slice(quat_1, quat_2)
+                    .map((product) => (
+                      <SmallProduct key={product._id} product={product} />
+                    ))}
               </div>
             </div>
           </div>
@@ -200,16 +205,39 @@ const Store = ({ products }) => {
                 </div>
               </div>
             </div>
-            <div className="store__main__filter">
-              <div className="store__main__filter_">
-                <span>Laptop</span>
-                <IoMdClose className="icon" />
+            <div className="store__main__mob">
+              <div className="store__main__mob__search">
+                <div className="store__main__mob__search_">
+                  <form className="searchBox-mob" onSubmit={searchSubmit}>
+                    <input
+                      type="text"
+                      className="input-mob"
+                      placeholder="Search for Products, Brands & more..."
+                      onChange={handleChange}
+                      value={keyword}
+                    />
+                    <input type="submit" hidden />
+                  </form>
+                  <div className="store__main__mob__search__icon">
+                    <BiSearch
+                      className="icon mob-search"
+                      onClick={searchSubmit}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="store__main__filter_">
-                <span>Laptop</span>
-                <IoMdClose className="icon" />
+              <div className="store__main__mob_filter">
+                <div className="store__main__mob__filter__icon">
+                  <MdOutlineFilterList className="icon mob-nnn" />
+                  <h3>Filter</h3>
+                </div>
+                <div className="store__main__mob__filter_">
+                  <h3>Sort By</h3>
+                  <BiChevronDown className="icon mob-nn" />
+                </div>
               </div>
             </div>
+
             <div className="home__top_collection_">
               {products &&
                 products.products.map((product) => (
@@ -248,9 +276,14 @@ export async function getStaticProps() {
     `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products`
   );
   const data = await res.json();
+  const ress = await fetch(
+    "https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?special=Featured"
+  );
+  const dataa = await ress.json();
   return {
     props: {
       products: data,
+      product_m: dataa,
     },
   };
 }

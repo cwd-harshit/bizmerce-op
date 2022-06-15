@@ -7,19 +7,27 @@ import "../components/style/footer.css";
 import "../components/style/home.css";
 import "../components/style/product.css";
 import "../components/style/store.css";
-import { useRouter } from "next/router";
+import Router from "next/router";
+import { useState } from "react";
+import NProgress from "nprogress";
+import "../styles/nprogress.css";
+
+Router.events.on("routeChangeStart", NProgress.start);
+Router.events.on("routeChangeError", NProgress.done);
+Router.events.on("routeChangeComplete", NProgress.done);
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter();
-  if (router.isFallback) {
-    return <div className="loading">Loading&#8230;</div>;
-  }
+  const [loading, setLoading] = useState(false);
+
   return (
-    <Provider store={Store}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Provider>
+    <>
+      {loading && <div className="loading">Loading&#8230;</div>}
+      <Provider store={Store}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
+    </>
   );
 }
 

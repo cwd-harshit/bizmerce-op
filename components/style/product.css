@@ -110,6 +110,18 @@
   padding: 10px;
 }
 
+.vvvv {
+  height: 200px;
+}
+
+.vv {
+  width: 100% !important;
+}
+
+.vvv {
+  padding: 6px;
+}
+
 .c {
   font-size: 2.6rem;
 }
