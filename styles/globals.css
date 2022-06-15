@@ -14,3 +14,64 @@ a {
 * {
   box-sizing: border-box;
 }
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+:root {
+  --sec_font: #5d646c;
+  --blue: #278be3;
+  --red: #d44848;
+  --theme-sheet-width-xl: 1140px;
+  --theme-sheet-width-lg: 940px;
+  --theme-sheet-width-md: 720px;
+  --theme-sheet-width-sm: 540px;
+  --theme-sheet-width-xs: 340px;
+}
+
+body {
+  font-family: "Merienda", cursive;
+  font-family: "Poppins", sans-serif;
+}
+.icon {
+  font-size: 3.5rem;
+  color: var(--sec_font);
+  transition: ease-in-out 0.5s;
+}
+.icon_active {
+  color: var(--red);
+}
+
+.icon:hover {
+  color: var(--red);
+  cursor: pointer;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+/* @media screen and (max-width: 1000px) {
+  body {
+    padding: 0px 60px;
+  }
+} */
+
+/* @media screen and (max-width: 768px) {
+  body {
+    padding: 0 25px;
+  }
+} */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 56.25%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 52%;
+  }
+}

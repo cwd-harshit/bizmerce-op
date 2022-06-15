@@ -1,0 +1,258 @@
+.store {
+  display: flex;
+  width: 100%;
+}
+
+.store__filter {
+  width: 25%;
+  /* height: 900px; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  border-top: 1px solid rgb(192, 192, 192);
+  padding: 20px 30px;
+}
+
+.store__main {
+  width: 75%;
+  /* height: 900px; */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(192, 192, 192);
+  padding: 10px 30px;
+}
+
+/* now store __ main to karte hai */
+
+.store__main__head {
+  display: flex;
+  width: 100%;
+  /* padding: 10px; */
+  font-size: 2rem;
+  padding: 2px;
+  /* border: 1px solid #324564; */
+  justify-content: flex-start;
+  height: 60px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.store__main__search {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.store__main__search_ {
+  display: flex;
+  width: 60%;
+  border: 1px solid rgb(192, 192, 192);
+  height: 55px;
+}
+
+.store__main__search__icon {
+  width: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  border-right: 1px solid rgb(192, 192, 192);
+}
+
+.nnn {
+  font-size: 2.8rem;
+}
+
+.searchBox {
+  display: flex;
+  width: 92%;
+  border: none;
+  font-size: 1.8rem;
+  padding-left: 15px;
+}
+
+.nooo {
+  font-size: 1.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: none;
+}
+
+.store__main__search__filter {
+  display: flex;
+  width: 25%;
+  border: 1px solid rgb(192, 192, 192);
+  height: 55px;
+  align-items: center;
+}
+
+.store__main__search__filter__icon {
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  font-size: 1.8rem;
+  border-right: 1px solid rgb(192, 192, 192);
+}
+
+.store__main__search__filter_ {
+  display: flex;
+  width: 75%;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 1.2rem;
+}
+
+.nnnn {
+  font-size: 3.4rem !important;
+}
+
+.store__main__filter {
+  display: flex;
+  width: 100%;
+  /* width: 300px; */
+  /* background-color: aqua; */
+  padding: 5px;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.store__main__filter_ {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 150px;
+  min-width: 100px;
+  align-items: center;
+  font-size: 1.4rem;
+  padding: 2px 10px;
+  color: rgb(70, 70, 70);
+  background-color: rgb(221, 221, 221);
+  border-radius: 5px;
+  margin-right: 20px;
+  font-weight: 500;
+}
+
+.store__filter__categories {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid var(--blue);
+  margin-bottom: 30px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.store__filter__categories__head {
+  margin-top: -10px;
+  border-bottom: 1px solid var(--red);
+  font-size: 1.3rem;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+
+.store__filter__categories__head span {
+  color: var(--blue);
+}
+
+.store__filter__categories_ {
+  height: 200px;
+  overflow-y: scroll;
+  padding: 5px;
+  transition: ease-in-out 0.5s;
+}
+
+.store__filter__categories__ {
+  font-size: 1.2rem;
+  padding: 1px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  width: 95%;
+  border-bottom: 0.7px solid rgb(192, 192, 192);
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+}
+
+.store__filter__categories__:hover {
+  color: var(--red);
+}
+
+.store__filter__categories_::-webkit-scrollbar {
+  width: 3px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 2px;
+}
+
+.store__filter__categories_::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.store__filter__categories_::-webkit-scrollbar-thumb {
+  background: var(--blue);
+}
+
+.store__filter__categories_::-webkit-scrollbar-thumb:hover {
+  background: var(--red);
+}
+
+/* pagination */
+
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  /* margin: 6vmax; */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.page-item {
+  background-color: rgb(255, 255, 255);
+  list-style: none;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  padding: 1vmax 1.5vmax;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.page-item:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.page-item:last-child {
+  border-radius: 0 5px 5px 0;
+}
+.page-link {
+  text-decoration: none;
+  font: 300 0.7vmax "Roboto";
+  color: rgb(80, 80, 80);
+  transition: all 0.3s;
+}
+
+.page-item:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.page-item:hover .page-link {
+  color: rgb(0, 0, 0);
+}
+
+.pageItemActive {
+  background-color: tomato;
+}
+
+.pageLinkActive {
+  color: white;
+}
