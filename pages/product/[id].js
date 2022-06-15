@@ -295,7 +295,7 @@ export default Product_Detail;
 //   };
 // }
 
-export async function getStaticProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id } }) {
   const res = await fetch(
     `https://bizmerce-server.cwd-harshit.repl.co/api/v1/product/${id}`
   );
@@ -320,16 +320,16 @@ export async function getStaticProps({ params: { id } }) {
   };
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      {
-        params: { id: "" },
-      },
-    ],
-    fallback: true,
-  };
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       {
+//         params: { id: "" },
+//       },
+//     ],
+//     fallback: true,
+//   };
+// }
 
 // export async function getServerSideProps() {
 //   const res_r = await fetch(
