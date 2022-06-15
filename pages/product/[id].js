@@ -18,9 +18,15 @@ import SmallProduct from "../../components/home/SmallProduct";
 import { useSelector, useDispatch } from "react-redux";
 import { Rating } from "@material-ui/lab";
 import Product_Card from "../../components/home/Product_Card";
+import { useRouter } from "next/router";
 
 const Product_Detail = ({ product, product_m, product_v }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div className="loading">Loading&#8230;</div>;
+  }
+  const [isLoading, setLoading] = useState(false);
   const options = {
     value: product.product.ratings,
     readOnly: true,
@@ -289,7 +295,7 @@ export default Product_Detail;
 //   };
 // }
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getStaticProps({ params: { id } }) {
   const res = await fetch(
     `https://bizmerce-server.cwd-harshit.repl.co/api/v1/product/${id}`
   );
@@ -311,6 +317,17 @@ export async function getServerSideProps({ params: { id } }) {
       product_m: data_m,
       product_v: data_v,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [
+      {
+        params: { id: "" },
+      },
+    ],
+    fallback: true,
   };
 }
 
