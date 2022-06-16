@@ -5,6 +5,7 @@
   background-color: #185a94;
   justify-content: space-around;
   color: #fff;
+  z-index: 2;
 }
 
 .footer__top h1 {

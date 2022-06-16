@@ -40,14 +40,25 @@ const Product_Detail = ({ product, product_m, product_v }) => {
     if (product.product.Stock == 0) {
       return <h4 className="stock s-false">Out Of Stock</h4>;
     } else {
-      return <h4 className="stock s-true">In Stock</h4>;
+      if (product.product.Stock <= 5) {
+        return (
+          <h4 className="stock s-true">
+            In Stock{" "}
+            <span>(Hurry, only {product.product.Stock} left in Stock!)</span>
+          </h4>
+        );
+      } else {
+        return <h4 className="stock s-true">In Stock</h4>;
+      }
     }
   };
 
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
 
   const plus = () => {
-    setQuantity(quantity + 1);
+    if (product.product.Stock <= quantity) return;
+    const qty = quantity + 1;
+    setQuantity(qty);
   };
   const minus = () => {
     if (quantity <= 0) {
@@ -58,10 +69,12 @@ const Product_Detail = ({ product, product_m, product_v }) => {
   };
 
   const atc_ = () => {
-    dispatch({
-      type: "atc",
-      payload: product.product,
-    });
+    if (quantity > 0) {
+      dispatch({
+        type: "atc",
+        payload: product.product,
+      });
+    }
   };
   const inc_atc = () => {
     dispatch({

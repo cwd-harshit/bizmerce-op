@@ -172,7 +172,11 @@ const Header = () => {
               {cartValue_ ? <div /> : <span>{cartValue}</span>}
             </div>
             <div className="header__account">
-              <RiAccountCircleLine className="icon" />
+              <Link href="/login">
+                <a>
+                  <RiAccountCircleLine className="icon" />
+                </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -11,6 +11,9 @@ import Router from "next/router";
 import { useState } from "react";
 import NProgress from "nprogress";
 import "../styles/nprogress.css";
+import "../components/style/login.css";
+import "../components/style/signup.css";
+import "../components/style/account.css";
 
 Router.events.on("routeChangeStart", NProgress.start);
 Router.events.on("routeChangeError", NProgress.done);

@@ -1,0 +1,140 @@
+.login {
+  display: flex;
+  width: 100%;
+  overflow: hidden !important;
+  position: relative;
+}
+
+.login__left {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+}
+
+.login__left img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.login__left h1 {
+  position: absolute;
+  /* top: 50%;
+  bottom: 50%; */
+  /* left: 50%;
+  right: 50%; */
+  width: 80%;
+  color: white;
+  font-family: "Playfair Display SC", serif;
+  font-size: 5rem;
+}
+
+input {
+  border: none;
+}
+
+.login__right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  width: 25%;
+  position: relative;
+}
+
+.login_ {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.signup__head {
+  line-height: 20px;
+  height: 150px;
+  width: 100%;
+}
+
+.signup__head h1 {
+  font-weight: 550;
+  font-size: 3.2rem;
+}
+
+.signup__head h3 {
+  font-weight: 400;
+  font-size: 2rem;
+  color: #737782;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.signup-form input {
+  font-size: 2.5rem;
+  padding: 10px 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(195, 195, 195);
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.signup__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.signup__cta_ {
+  width: 200px;
+  background-color: #111726;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 1.3rem;
+}
+
+.signup__ask {
+  font-size: 1.3rem;
+  margin-top: 5px;
+  color: #57595f;
+}
+
+.signup__ask span {
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.si {
+  position: absolute;
+  background-color: #fff;
+  height: 100%;
+  transition: ease-in-out 0.7s;
+  right: -600px;
+}
+
+.si_o {
+  right: 0;
+  position: absolute;
+  background-color: #fff;
+  height: 100%;
+  transition: ease-in-out 0.7s;
+}
+
+@media screen and (max-width: 415px) {
+  .login__left {
+    display: none;
+  }
+  .login__right {
+    width: 100%;
+  }
+}
