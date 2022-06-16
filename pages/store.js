@@ -14,7 +14,11 @@ import {
 } from "react-icons/bi";
 import { useSelector, useDispatch } from "react-redux";
 import Slider from "@material-ui/core/Slider";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+import {
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight,
+  AiOutlineClose,
+} from "react-icons/ai";
 import SmallProduct from "../components/home/SmallProduct";
 
 const Store = ({ products, product_m }) => {
@@ -105,6 +109,19 @@ const Store = ({ products, product_m }) => {
   const priceHandler = (event, newPrice) => {
     setPrice(newPrice);
   };
+
+  const [sortby, setSortby] = useState(false);
+
+  const sortbyopen = () => {
+    setSortby(!sortby);
+  };
+
+  const [filter, setFilter] = useState(false);
+
+  const filteropen = () => {
+    setFilter(!filter);
+  };
+
   return (
     <div>
       <Head>
@@ -118,7 +135,9 @@ const Store = ({ products, product_m }) => {
           <div className="store__filter">
             <div className="store__filter__price">
               <div className="store__filter__price__head">
-                <h2>Filter By Price</h2>
+                <h2>
+                  Filter By <span>Price</span>
+                </h2>
               </div>
               <Slider
                 value={price}
@@ -132,7 +151,72 @@ const Store = ({ products, product_m }) => {
             <div className="store__filter__categories">
               <div className="store__filter__categories__head">
                 <h2>
-                  Categ<span>ories</span>
+                  Filter By <span>Categories</span>
+                </h2>
+              </div>
+              <div className="store__filter__categories_">
+                {categories.map((category) => (
+                  <div
+                    className="store__filter__categories__"
+                    key={category}
+                    onClick={() => {
+                      setCategory(category);
+                      Router.push(`/filter/category/${category}`);
+                    }}
+                  >
+                    <h3>{category}</h3>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="product__new vv">
+              <div className="product__new__head">
+                <h2>FEATURED PRODUCTS</h2>
+                <div className="product__new_">
+                  <AiOutlineArrowLeft className="icon c" onClick={qt_minus} />
+                  <AiOutlineArrowRight className="icon c" onClick={qt_plus} />
+                </div>
+              </div>
+              <div className="product__new__ vvv">
+                {product_m &&
+                  product_m.products
+                    .slice(quat_1, quat_2)
+                    .map((product) => (
+                      <SmallProduct key={product._id} product={product} />
+                    ))}
+              </div>
+            </div>
+          </div>
+          <div
+            className={
+              filter
+                ? "store__filter__mob filter__mob__open"
+                : "store__filter__mob"
+            }
+          >
+            <div className="store__mob__filter__head">
+              <h1>Filters</h1>
+              <AiOutlineClose className="icon mob-icon" onClick={filteropen} />
+            </div>
+            <div className="store__filter__price">
+              <div className="store__filter__price__head">
+                <h2>
+                  Filter By <span>Price</span>
+                </h2>
+              </div>
+              <Slider
+                value={price}
+                onChange={priceHandler}
+                valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
+                min={0}
+                max={25000}
+              />
+            </div>
+            <div className="store__filter__categories">
+              <div className="store__filter__categories__head">
+                <h2>
+                  Filter By <span>Categories</span>
                 </h2>
               </div>
               <div className="store__filter__categories_">
@@ -196,12 +280,42 @@ const Store = ({ products, product_m }) => {
                 </form>
               </div>
               <div className="store__main__search__filter">
-                <div className="store__main__search__filter__icon">
-                  <MdOutlineFilterList className="icon nnnn" />
+                <div className="filter_">
+                  <div className="store__main__search__filter__icon">
+                    <MdOutlineFilterList className="icon nnnn" />
+                  </div>
+                  <div className="store__main__search__filter_">
+                    <h3>Sort By</h3>
+                    <BiChevronDown className="icon nnn" onClick={sortbyopen} />
+                  </div>
                 </div>
-                <div className="store__main__search__filter_">
-                  <h3>Popular</h3>
-                  <BiChevronDown className="icon nnn" />
+                <div
+                  className={
+                    sortby
+                      ? "store__main__search__filter__ menu__search__open"
+                      : "store__main__search__filter__"
+                  }
+                >
+                  <div
+                    className="search__filter"
+                    onClick={() => {
+                      console.log("noob");
+                    }}
+                  >
+                    <h3>
+                      Price <span>Low to High</span>
+                    </h3>
+                  </div>
+                  <div className="search__filter">
+                    <h3>
+                      Price <span>High to Low</span>
+                    </h3>
+                  </div>
+                  <div className="search__filter">
+                    <h3>
+                      Sort By <span>Latest</span>
+                    </h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -227,13 +341,49 @@ const Store = ({ products, product_m }) => {
                 </div>
               </div>
               <div className="store__main__mob_filter">
-                <div className="store__main__mob__filter__icon">
+                <div
+                  className="store__main__mob__filter__icon"
+                  onClick={filteropen}
+                >
                   <MdOutlineFilterList className="icon mob-nnn" />
                   <h3>Filter</h3>
                 </div>
-                <div className="store__main__mob__filter_">
-                  <h3>Sort By</h3>
-                  <BiChevronDown className="icon mob-nn" />
+                <div className="store__main__mob__filter__">
+                  <div className="store__main__mob__filter_">
+                    <h3>Sort By</h3>
+                    <BiChevronDown
+                      className="icon mob-nn"
+                      onClick={sortbyopen}
+                    />
+                  </div>
+                  <div
+                    className={
+                      sortby
+                        ? "store__main__search__filter__ menu__search__open"
+                        : "store__main__search__filter__"
+                    }
+                  >
+                    <div
+                      className="search__filter"
+                      onClick={() => {
+                        console.log("noob");
+                      }}
+                    >
+                      <h3>
+                        Price <span>Low to High</span>
+                      </h3>
+                    </div>
+                    <div className="search__filter">
+                      <h3>
+                        Price <span>High to Low</span>
+                      </h3>
+                    </div>
+                    <div className="search__filter">
+                      <h3>
+                        Sort By <span>Latest</span>
+                      </h3>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
