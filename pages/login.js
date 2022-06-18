@@ -73,6 +73,11 @@ const Login = () => {
     } else {
       alert.success("Successfully Registered!");
       cookie.set("token", res2.token);
+      cookie.set("user__name", res2.user.name);
+      cookie.set("user__email", res2.user.email);
+      cookie.set("user__pass", res2.user.password);
+      cookie.set("user__role", res2.user.role);
+      cookie.set("user__profile__image", res2.user.avatar.url);
       router.push("/account");
     }
   };
