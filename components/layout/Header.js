@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const router = useRouter();
+  const dynamicRoute = useRouter().asPath;
   // nav schdow
 
   const [navbar, setNavbar] = useState(false);
@@ -49,16 +50,25 @@ const Header = () => {
     window.welcomeMessage = "Welcome to CodingDeft!";
   }
 
+  // const [cartValue, setCartValue] = useState();
+
   useEffect(() => {
     window.addEventListener("scroll", changeShadows);
     window.addEventListener("scroll", gototop_function);
   }, []);
-  const cartValue = useSelector((state) => state.cart.cartValue);
+  // useEffect(() => {
+  //   setCartValue(localStorage.getItem("cartNo"));
+  // }, [dynamicRoute]);
 
-  if (cartValue > 0) {
-    const cartValue_ = true;
-  }
-  const cartValue_ = false;
+  // console.log(cartValue);
+  const { cartValue } = useSelector((state) => state.cart);
+  const Cart = () => {
+    if (cartValue > 0) {
+      return <span>{cartValue}</span>;
+    } else {
+      return;
+    }
+  };
 
   return (
     <div className="header">
@@ -88,7 +98,6 @@ const Header = () => {
                   <h3>Home</h3>
                 </a>
               </Link>
-
               <div
                 className={router.pathname == "/" ? "line line_active" : "line"}
               ></div>
@@ -168,8 +177,12 @@ const Header = () => {
           </div>
           <div className="header__auth">
             <div className="header__cart">
-              <BsCart4 className="icon" />
-              {cartValue_ ? <div /> : <span>{cartValue}</span>}
+              <Link href="/cart">
+                <a>
+                  <BsCart4 className="icon" />
+                </a>
+              </Link>
+              <Cart />
             </div>
             <div className="header__account">
               <Link href="/login">
@@ -218,7 +231,7 @@ const Header = () => {
             <a>
               <CgProfile
                 className={
-                  router.pathname == "/account  " ? "icon icon_active" : "icon"
+                  router.pathname == "/account" ? "icon icon_active" : "icon"
                 }
               />
             </a>

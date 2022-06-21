@@ -4,6 +4,7 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { TbTruck } from "react-icons/tb";
 import { GiAlarmClock } from "react-icons/gi";
 import { MdOutlineLocalOffer, MdOutlineCreditCard } from "react-icons/md";
+import { useAlert } from "react-alert";
 import {
   AiOutlineArrowLeft,
   AiOutlineArrowRight,
@@ -23,10 +24,18 @@ import { useRouter } from "next/router";
 const Product_Detail = ({ product, product_m, product_v }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const dynamicRoute = useRouter().asPath;
   if (router.isFallback) {
     return <div className="loading">Loading&#8230;</div>;
   }
   const [isLoading, setLoading] = useState(false);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: "inc_cart",
+  //     payload: localStorage.getItem("cartNo"),
+  //   });
+  // }, [dynamicRoute]);
+
   const options = {
     value: product.product.ratings,
     readOnly: true,
@@ -52,9 +61,12 @@ const Product_Detail = ({ product, product_m, product_v }) => {
       }
     }
   };
+  const alert = useAlert();
 
   const [quantity, setQuantity] = useState(0);
-
+  const cartNo = useSelector((state) => state.cart.cartValue);
+  const cart = useSelector((state) => state.cart.cart);
+  var st = product.product.Stock;
   const plus = () => {
     if (product.product.Stock <= quantity) return;
     const qty = quantity + 1;
@@ -74,6 +86,8 @@ const Product_Detail = ({ product, product_m, product_v }) => {
         type: "atc",
         payload: product.product,
       });
+
+      localStorage.setItem("cartItem", JSON.stringify(cart));
     }
   };
   const inc_atc = () => {
@@ -81,11 +95,25 @@ const Product_Detail = ({ product, product_m, product_v }) => {
       type: "inc_cart",
       payload: quantity,
     });
-  };
 
+    localStorage.setItem("cartNo", JSON.stringify(cartNo));
+  };
+  const [gt, setGt] = useState(product.product.Stock);
+  useEffect(() => {
+    setGt(product.product.Stock);
+    setQuantity(0);
+  }, [dynamicRoute]);
   const atc = () => {
-    atc_();
-    inc_atc();
+    setGt(gt - quantity);
+    console.log(gt);
+    if (gt > 0) {
+      atc_();
+      inc_atc();
+    } else {
+      alert.error(
+        `Because of Low Stock of ${product.product.name} you cannot add more to the cart!`
+      );
+    }
   };
 
   const [quat_1, setquat_1] = useState(0);
