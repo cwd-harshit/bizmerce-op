@@ -133,14 +133,14 @@ export default function Home({ products_tc, products, products_f }) {
 
 export async function getStaticProps() {
   const res_tc = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?special=Top_Collections`
+    `http://139.59.29.255/api/v1/products?special=Top_Collections`
   );
   const data_tc = await res_tc.json();
   const res_f = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?special=Featured`
+    `http://139.59.29.255/api/v1/products?special=Featured`
   );
   const data_f = await res_f.json();
-  // const res = await fetch(`https://bizmerce-server.cwd-harshit.repl.co/api/v1/products`);
+  // const res = await fetch(`http://139.59.29.255/api/v1/products`);
   // const data = await res.json();
   return {
     props: {

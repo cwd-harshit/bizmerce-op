@@ -7,6 +7,11 @@ const initialState = {
 
 export const cartReducer = createReducer(initialState, {
   atc: (state, action) => {
+    // const item = action.payload;
+    // const isItemExists = state.cart.find((i) => i.product === item.product);
+    // if (isItemExists) {
+    //   state.cart.map((i) => i.product === isItemExists.product ? item : i)
+    // }
     state.cart = [...state.cart, action.payload];
   },
 

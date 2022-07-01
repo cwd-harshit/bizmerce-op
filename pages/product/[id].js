@@ -87,7 +87,7 @@ const Product_Detail = ({ product, product_m, product_v }) => {
         payload: product.product,
       });
 
-      localStorage.setItem("cartItem", JSON.stringify(cart));
+      // localStorage.setItem("cartItem", JSON.stringify(cart));
     }
   };
   const inc_atc = () => {
@@ -96,7 +96,7 @@ const Product_Detail = ({ product, product_m, product_v }) => {
       payload: quantity,
     });
 
-    localStorage.setItem("cartNo", JSON.stringify(cartNo));
+    // localStorage.setItem("cartNo", JSON.stringify(cartNo));
   };
   const [gt, setGt] = useState(product.product.Stock);
   useEffect(() => {
@@ -136,7 +136,7 @@ const Product_Detail = ({ product, product_m, product_v }) => {
   // const fetch_r = async () => {
   //   // console.log(product.product.category);
   //   var res_r = await fetch(
-  //     `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?category=${product.product.category}`
+  //     `http://139.59.29.255/api/v1/products?category=${product.product.category}`
   //   );
   //   var data_r = await res_r.json();
   //   // console.log(data_r);
@@ -145,7 +145,7 @@ const Product_Detail = ({ product, product_m, product_v }) => {
   const [data, setData] = useState(null);
   useEffect(() => {
     fetch(
-      `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?category=${product.product.category}`
+      `http://139.59.29.255/api/v1/products?category=${product.product.category}`
     )
       .then((response) => response.json())
       .then((data) => setData(data.products));
@@ -309,14 +309,14 @@ export default Product_Detail;
 //   let data_c = null;
 //   let data_m = null;
 //   try {
-//     // const res = await fetch(`https://bizmerce-server.cwd-harshit.repl.co/api/v1/product/${id}`);
+//     // const res = await fetch(`http://139.59.29.255/api/v1/product/${id}`);
 //     // data = await res.json();
 //     const res_c = await fetch(
-//       `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?category=${product.product.category}`
+//       `http://139.59.29.255/api/v1/products?category=${product.product.category}`
 //     );
 //     data_c = await res_c.json();
 //     const res_m = await fetch(
-//       `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?special=New`
+//       `http://139.59.29.255/api/v1/products?special=New`
 //     );
 //     data_m = await res_m.json();
 //   } catch (err) {}
@@ -337,18 +337,14 @@ export default Product_Detail;
 // }
 
 export async function getServerSideProps({ params: { id } }) {
-  const res = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/product/${id}`
-  );
+  const res = await fetch(`http://139.59.29.255/api/v1/product/${id}`);
   const data = await res.json();
 
-  const res_m = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?special=New`
-  );
+  const res_m = await fetch(`http://139.59.29.255/api/v1/products?special=New`);
   const data_m = await res_m.json();
 
   const res_v = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?special=Featured`
+    `http://139.59.29.255/api/v1/products?special=Featured`
   );
   const data_v = await res_v.json();
 
@@ -374,7 +370,7 @@ export async function getServerSideProps({ params: { id } }) {
 
 // export async function getServerSideProps() {
 //   const res_r = await fetch(
-//     `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?${product.product.category}`
+//     `http://139.59.29.255/api/v1/products?${product.product.category}`
 //   );
 //   const data_r = await res_r.json();
 //   return {

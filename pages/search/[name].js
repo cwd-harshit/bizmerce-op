@@ -29,7 +29,7 @@ const Search = ({ product }) => {
   const [ratings, setRatings] = useState(0);
 
   useEffect(() => {
-    fetch(`https://bizmerce-server.cwd-harshit.repl.co/api/v1/products`)
+    fetch(`http://139.59.29.255/api/v1/products`)
       .then((response1) => response1.json())
       .then((data1) => setData1(data1.products));
   });
@@ -234,7 +234,7 @@ export default Search;
 
 export async function getServerSideProps({ params: { name } }) {
   const res = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?keyword=${name}`
+    `http://139.59.29.255/api/v1/products?keyword=${name}`
   );
   const data = await res.json();
 
@@ -247,7 +247,7 @@ export async function getServerSideProps({ params: { name } }) {
 
 // export async function getServerSideProps() {
 //   const res_r = await fetch(
-//     `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?${product.product.category}`
+//     `http://139.59.29.255/api/v1/products?${product.product.category}`
 //   );
 //   const data_r = await res_r.json();
 //   return {

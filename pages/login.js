@@ -23,19 +23,16 @@ const Login = () => {
   //   const redirect = location.search ? location.search.split("=")[1] : "/account";
   const Login_u = async (e) => {
     e.preventDefault();
-    const res = await fetch(
-      "https://bizmerce-server.cwd-harshit.repl.co/api/v1/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: loginEmail,
-          password: loginPassword,
-        }),
-      }
-    );
+    const res = await fetch("http://139.59.29.255/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: loginEmail,
+        password: loginPassword,
+      }),
+    });
     const res2 = await res.json();
     if ((res2.success = false)) {
       alert.error(res2.message);
@@ -52,20 +49,17 @@ const Login = () => {
   };
   const Signup = async (e) => {
     e.preventDefault();
-    const res = await fetch(
-      "https://bizmerce-server.cwd-harshit.repl.co/api/v1/register",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          email: loginEmail,
-          password: loginPassword,
-        }),
-      }
-    );
+    const res = await fetch("http://139.59.29.255/api/v1/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        email: loginEmail,
+        password: loginPassword,
+      }),
+    });
     const res2 = await res.json();
     console.log(res2);
     if ((res2.success = false)) {

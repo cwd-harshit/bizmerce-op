@@ -235,9 +235,7 @@ const ID_ = ({ products }) => {
 export default ID_;
 
 export async function getServerSideProps({ params: { id } }) {
-  const res = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?brand=${id}`
-  );
+  const res = await fetch(`http://139.59.29.255/api/v1/products?brand=${id}`);
   const data = await res.json();
 
   return {

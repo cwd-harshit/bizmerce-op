@@ -422,12 +422,10 @@ const Store = ({ products, product_m }) => {
 export default Store;
 
 export async function getStaticProps() {
-  const res = await fetch(
-    `https://bizmerce-server.cwd-harshit.repl.co/api/v1/products`
-  );
+  const res = await fetch(`http://139.59.29.255/api/v1/products`);
   const data = await res.json();
   const ress = await fetch(
-    "https://bizmerce-server.cwd-harshit.repl.co/api/v1/products?special=Featured"
+    "http://139.59.29.255/api/v1/products?special=Featured"
   );
   const dataa = await ress.json();
   return {
